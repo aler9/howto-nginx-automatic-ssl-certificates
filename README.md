@@ -1,6 +1,6 @@
 Sample code and instructions on how to automatically obtain and update Let's Encrypt certificates for nginx, with no manual steps or maintenance.
 
-# Introduction
+## Introduction
 
 Nowadays SSL certificates and HTTPS are mandatory for websites of any scale, as most browsers are starting to mark as "unsecure" plain HTTP connections. Certificates must be issued by a trusted Certificate Authority, a service that is offered free-of-charge by Let's Encrypt, that also provides a command line utility to request or revoke certificates, actions that are authorized only after the domain is validated. This entire procedure is automatized by some specialized http servers like [Caddy](https://github.com/mholt/caddy/), while it must be performed manually when using any other software, like Nginx; it is roughly like this:
 * call the command `certbot`;
@@ -10,7 +10,7 @@ Nowadays SSL certificates and HTTPS are mandatory for websites of any scale, as 
 
 Since i got tired of repeating this scheme every time i have to setup a new website, i wrote a little script that, if started before Nginx, automatizes the procedure by taking the needed data from the Nginx configuration files.
 
-# Setup
+## Setup
 
 Server blocks in Nginx configuration must be setup normally and pointing to the standard location of a Let's Encrypt certificate:
 ```
@@ -68,4 +68,15 @@ What does it do:
 * Server blocks (`server { ... }`) are extracted;
 * If a server uses a certbot certificate, and this certificate does not exists, certbot is called to obtain a certificate;
 * When the procedure is finished for every domain, nginx is started.
+
+## Renewal
+
+Let's encrypt certificates must be renewed every 3-4 months. Nginx must not be running during the procedure. It is enough to add to cron this entry:
+```
+3 44 */5 * *  kill -TERM \$(cat /run/nginx.pid); certbot -q renew; (nginx -g 'daemon off;' &)
+```
+
+
+
+
 
