@@ -73,7 +73,7 @@ What does it do:
 
 Let's encrypt certificates must be renewed every 3-4 months. Nginx must not be running during the procedure. It is enough to add to cron this entry:
 ```
-3 44 */5 * *  kill -TERM \$(cat /run/nginx.pid); certbot -q renew; (nginx -g 'daemon off;' &)
+3 44 */5 * *  kill -TERM $(cat /run/nginx.pid); certbot -q renew; (nginx -g 'daemon off;' &)
 ```
 
 
