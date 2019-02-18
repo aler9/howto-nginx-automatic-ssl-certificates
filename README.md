@@ -67,7 +67,7 @@ What does it do:
 * Comments are removed (`sed 's/#.*$//'`);
 * Server blocks (`server { ... }`) are extracted;
 * If a server uses a certbot certificate, and this certificate does not exists, certbot is called to obtain a certificate;
-* When the procedure is finished for every domain, nginx is started.
+* When the procedure is finished, nginx is started.
 
 ## Renewal
 
