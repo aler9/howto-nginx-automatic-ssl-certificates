@@ -69,7 +69,7 @@ What does it do:
 
 ## Renewal
 
-Let's encrypt certificates must be renewed every 3-4 months. Nginx must not be running during the procedure. Both actions can be automatized through cron, by adding this entry to cron tabs:
+Let's Encrypt certificates must be renewed every 3-4 months. Nginx must not be running during the procedure. Both actions can be scheduled through cron, by adding this entry to cron tabs:
 ```
 3 44 */5 * *  kill -TERM $(cat /run/nginx.pid); certbot -q renew; (nginx -g 'daemon off;' &)
 ```
