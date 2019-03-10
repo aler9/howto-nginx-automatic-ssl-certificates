@@ -1,3 +1,6 @@
+
+# Howto: Automatic SSL certificates for Nginx
+
 Sample code and instructions on how to automatically obtain and update Let's Encrypt SSL certificates for nginx, with no manual steps or maintenance.
 
 ## Introduction
